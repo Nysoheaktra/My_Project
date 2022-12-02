@@ -78,7 +78,7 @@ class _CategoryCardState extends State<CategoryCard> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 8),
                               child: Text(
-                                'View more',
+                                'View more item',
                                 style: TextStyle(
                                     color: Colors.black54,
                                     fontWeight: FontWeight.bold),
