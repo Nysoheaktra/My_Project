@@ -1,3 +1,4 @@
+import 'package:app_commerce/view/account/account_screen.dart';
 import 'package:app_commerce/view/category/category_screen.dart';
 import 'package:app_commerce/view/home/home_screen.dart';
 import 'package:app_commerce/view/product/product_screen.dart';
@@ -22,9 +23,7 @@ class DashBoardScreen extends StatelessWidget {
               const HomeScreen(),
               const ProductScreen(),
               const CategoryScreen(),
-              Container(
-                color: Colors.blue,
-              ),
+              const AccountSceen(),
               Container(
                 color: Colors.orange,
               ),
