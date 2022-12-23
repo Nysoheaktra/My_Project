@@ -1,9 +1,16 @@
+import 'package:app_commerce/controller/controller.dart';
 import 'package:app_commerce/view/account/auth/sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AccountSceen extends StatelessWidget {
+class AccountSceen extends StatefulWidget {
   const AccountSceen({super.key});
 
+  @override
+  State<AccountSceen> createState() => _AccountSceenState();
+}
+
+class _AccountSceenState extends State<AccountSceen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,28 +21,32 @@ class AccountSceen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Row(
-            children: [
-              const CircleAvatar(
-                backgroundColor: Colors.grey,
-                radius: 40,
-                child: CircleAvatar(
-                  radius: 35,
-                  backgroundImage: AssetImage("assets/user.png"),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                children: const [
-                  Text(
-                    'Sign in your account',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          Obx(
+            () => Row(
+              children: [
+                const CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  radius: 40,
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage("assets/user.png"),
                   ),
-                ],
-              )
-            ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  children: [
+                    Text(
+                      authController.user.value?.fullname ??
+                          "Sign in your account",
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
           const SizedBox(
             height: 50,
@@ -66,10 +77,22 @@ class AccountSceen extends StatelessWidget {
             title: "Term of Service",
             onClick: () {},
           ),
-          buildAccountCard(
-            title: "Sign In",
-            onClick: () {},
-          ),
+          Obx(
+            () => buildAccountCard(
+              title: authController.user.value == null ? "Sign In" : "Sign Out",
+              onClick: () {
+                if (authController.user.value != null) {
+                  authController.signOut();
+                } else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignInScreen(),
+                      ));
+                }
+              },
+            ),
+          )
         ],
       ),
     );

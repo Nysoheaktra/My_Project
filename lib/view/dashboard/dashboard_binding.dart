@@ -1,3 +1,4 @@
+import 'package:app_commerce/controller/auth_controller.dart';
 import 'package:app_commerce/controller/category_controller.dart';
 import 'package:app_commerce/controller/dashboard_controller.dart';
 import 'package:app_commerce/controller/home_controller.dart';
@@ -11,5 +12,6 @@ class DeshBoardBinding extends Bindings {
     Get.put(HomeController());
     Get.put(ProductContrller());
     Get.put(CategoryController());
+    Get.put(AuthController());
   }
 }
